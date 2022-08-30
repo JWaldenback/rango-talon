@@ -1,7 +1,10 @@
 tag: browser
 -
 settings():
-  user.rango_start_with_direct_clicking = 1
+  user.rango_start_with_direct_clicking = 0
+#There are two modes: direct and explicit clicking. To switch between them you have to use the command rango direct or rango explicit. With explicit clicking you have to precede every hint with the word click. This mode prevents any misclicks at the expense of being a bit more tedious.
+#rango direct = 1 
+#rango explicit = 0
 
 # Click
 click <user.rango_target>:
@@ -14,7 +17,7 @@ stash <user.rango_target>:
   user.rango_command_with_target("openInBackgroundTab", rango_target)
 
 # Close tabs
-tab close other: user.rango_command_without_target("closeOtherTabsInWindow")
+tab close others: user.rango_command_without_target("closeOtherTabsInWindow")
 tab close left: user.rango_command_without_target("closeTabsToTheLeftInWindow")
 tab close right: user.rango_command_without_target("closeTabsToTheRightInWindow")
 tab close first [<number_small>]:
@@ -39,15 +42,15 @@ show <user.rango_target>:
   user.rango_command_with_target("showLink", rango_target)
 
 # Scroll
-upper: user.rango_command_without_target("scrollUpPage")
+(up | upper): user.rango_command_without_target("scrollUpPage")
 tiny up: user.rango_command_without_target("scrollUpPage", 0.2)
-downer: user.rango_command_without_target("scrollDownPage")
+(down | downer): user.rango_command_without_target("scrollDownPage")
 tiny down: user.rango_command_without_target("scrollDownPage", 0.2)
-upper <user.rango_target>:
+(up | upper) <user.rango_target>:
   user.rango_command_with_target("scrollUpAtElement", rango_target)
 tiny up <user.rango_target>:
   user.rango_command_with_target("scrollUpAtElement", rango_target, 0.2)
-downer <user.rango_target>:
+(down | downer) <user.rango_target>:
   user.rango_command_with_target("scrollDownAtElement", rango_target)
 tiny down <user.rango_target>:
   user.rango_command_with_target("scrollDownAtElement", rango_target, 0.2)
