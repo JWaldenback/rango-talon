@@ -23,16 +23,16 @@ tab split: user.rango_command_without_target("moveCurrentTabToNewWindow")
 tab back: user.rango_command_without_target("focusPreviousTab")
 
 # Close tabs
-tab close others: user.rango_command_without_target("closeOtherTabsInWindow")
-tab close left: user.rango_command_without_target("closeTabsToTheLeftInWindow")
-tab close right: user.rango_command_without_target("closeTabsToTheRightInWindow")
-tab close first [<number_small>]:
+tabs close others: user.rango_command_without_target("closeOtherTabsInWindow")
+tabs close left: user.rango_command_without_target("closeTabsToTheLeftInWindow")
+tabs close right all: user.rango_command_without_target("closeTabsToTheRightInWindow")
+tabs close first [<number_small>]:
   user.rango_command_without_target("closeTabsLeftEndInWindow", number_small or 1)
-tab close final [<number_small>]:
+tabs close final [<number_small>]:
   user.rango_command_without_target("closeTabsRightEndInWindow", number_small or 1)
-tab close previous [<number_small>]:
+tabs close left [<number_small>]:
   user.rango_command_without_target("closePreviousTabsInWindow", number_small or 1)
-tab close next [<number_small>]:
+tabs close right [<number_small>]:
   user.rango_command_without_target("closeNextTabsInWindow", number_small or 1)
 
 # Clone tab
@@ -50,18 +50,29 @@ show <user.rango_target>:
 # Scroll
 (up | upper): user.rango_command_without_target("scrollUpPage")
 tiny up: user.rango_command_without_target("scrollUpPage", 0.2)
+half up: user.rango_command_without_target("scrollUpPage", 0.5)
+
 (down | downer): user.rango_command_without_target("scrollDownPage")
 tiny down: user.rango_command_without_target("scrollDownPage", 0.2)
+half down: user.rango_command_without_target("scrollDownPage", 0.5)
+
 (up | upper) <user.rango_target>:
   user.rango_command_with_target("scrollUpAtElement", rango_target)
 tiny up <user.rango_target>:
   user.rango_command_with_target("scrollUpAtElement", rango_target, 0.2)
-(down | downer) <user.rango_target>:
+half up <user.rango_target>:
+  user.rango_command_with_target("scrollUpAtElement", rango_target, 0.5)
+
+  (down | downer) <user.rango_target>:
   user.rango_command_with_target("scrollDownAtElement", rango_target)
 tiny down <user.rango_target>:
   user.rango_command_with_target("scrollDownAtElement", rango_target, 0.2)
+half down <user.rango_target>:
+    user.rango_command_with_target("scrollDownAtElement", rango_target, 0.5)
+
 up again: user.rango_command_without_target("scrollUpAtElement")
 down again: user.rango_command_without_target("scrollDownAtElement")
+
 crown <user.rango_target>:
   user.rango_command_with_target("scrollElementToTop", rango_target)
 bottom <user.rango_target>:
@@ -72,16 +83,16 @@ center <user.rango_target>:
 # Copy target information
 copy [link] <user.rango_target>:
   user.rango_command_with_target("copyLink", rango_target)
-copy mark <user.rango_target>:
-  user.rango_command_with_target("copyMarkdownLink", rango_target)
-copy text <user.rango_target>:
-  user.rango_command_with_target("copyElementTextContent", rango_target)
+# copy mark <user.rango_target>:
+#   user.rango_command_with_target("copyMarkdownLink", rango_target)
+# copy text <user.rango_target>:
+#   user.rango_command_with_target("copyElementTextContent", rango_target)
 
 # Copy current url information
-copy page {user.rango_page_location_property}:
-  user.rango_command_without_target("copyLocationProperty", rango_page_location_property)
-copy mark address:
-  user.rango_command_without_target("copyCurrentTabMarkdownUrl")
+# copy page {user.rango_page_location_property}:
+#   user.rango_command_without_target("copyLocationProperty", rango_page_location_property)
+# copy mark address:
+#   user.rango_command_without_target("copyCurrentTabMarkdownUrl")
 
 # Modify hints appearance
 hint bigger: user.rango_command_without_target("increaseHintSize")
