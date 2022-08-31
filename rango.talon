@@ -24,7 +24,7 @@ tab back: user.rango_command_without_target("focusPreviousTab")
 
 # Close tabs
 tabs close others: user.rango_command_without_target("closeOtherTabsInWindow")
-tabs close left: user.rango_command_without_target("closeTabsToTheLeftInWindow")
+tabs close left all: user.rango_command_without_target("closeTabsToTheLeftInWindow")
 tabs close right all: user.rango_command_without_target("closeTabsToTheRightInWindow")
 tabs close first [<number_small>]:
   user.rango_command_without_target("closeTabsLeftEndInWindow", number_small or 1)
