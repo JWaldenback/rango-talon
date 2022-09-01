@@ -48,23 +48,23 @@ show <user.rango_target>:
   user.rango_command_with_target("showLink", rango_target)
 
 # Scroll
-(up | upper): user.rango_command_without_target("scrollUpPage")
+(up | upper): user.rango_command_without_target("scrollUpPage", 0.9)
 tiny up: user.rango_command_without_target("scrollUpPage", 0.2)
 half up: user.rango_command_without_target("scrollUpPage", 0.5)
 
-(down | downer): user.rango_command_without_target("scrollDownPage")
+(down | downer): user.rango_command_without_target("scrollDownPage", 0.9)
 tiny down: user.rango_command_without_target("scrollDownPage", 0.2)
 half down: user.rango_command_without_target("scrollDownPage", 0.5)
 
 (up | upper) <user.rango_target>:
-  user.rango_command_with_target("scrollUpAtElement", rango_target)
+  user.rango_command_with_target("scrollUpAtElement", rango_target, 0.9)
 tiny up <user.rango_target>:
   user.rango_command_with_target("scrollUpAtElement", rango_target, 0.2)
 half up <user.rango_target>:
   user.rango_command_with_target("scrollUpAtElement", rango_target, 0.5)
 
-  (down | downer) <user.rango_target>:
-  user.rango_command_with_target("scrollDownAtElement", rango_target)
+(down | downer) <user.rango_target>:
+  user.rango_command_with_target("scrollDownAtElement", rango_target, 0.9)
 tiny down <user.rango_target>:
   user.rango_command_with_target("scrollDownAtElement", rango_target, 0.2)
 half down <user.rango_target>:
