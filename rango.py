@@ -187,3 +187,10 @@ class UserActions:
 
     def rango_disable_direct_clicking():
         ctx.tags = []
+
+    #Defining mouse scroll actions here enables for the usage of the exact same voice commands in mouse.py
+    def mouse_scroll_up(amount: float = 1):
+        actions.user.rango_command_without_target("scrollUpPage", amount)
+
+    def mouse_scroll_down(amount: float = 1):
+        actions.user.rango_command_without_target("scrollDownPage", amount)
