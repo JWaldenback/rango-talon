@@ -1,7 +1,7 @@
 tag: browser
 -
 settings():
-  user.rango_start_with_direct_clicking = 0
+  user.rango_start_with_direct_clicking = 1
 #There are two modes: direct and explicit clicking. To switch between them you have to use the command rango direct or rango explicit. With explicit clicking you have to precede every hint with the word click. This mode prevents any misclicks at the expense of being a bit more tedious.
 #rango direct = 1 
 #rango explicit = 0
