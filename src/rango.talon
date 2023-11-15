@@ -1,11 +1,9 @@
 tag: browser
 -
 settings():
-#There are two modes: direct and explicit clicking. To switch between them you have to use the command rango direct or rango explicit. With explicit clicking you have to precede every hint with the word click. This mode prevents any misclicks at the expense of being a bit more tedious.
-#rango direct = 1 
-#rango explicit = 0
-  user.rango_start_with_direct_clicking = 1
-  user.rango_exclude_singles = 1
+#There are two modes: direct and explicit clicking. Explicit clicking is the default mode, to switch between the modes comment/uncomment the tag `user.rango_direct_clicking`. With explicit clicking you have to precede every hint with the word `click`. This mode prevents any misclicks at the expense of being a bit more tedious.
+tag(): user.rango_direct_clicking
+#tag(): user.rango_number_hints
 
 # Click
 click <user.rango_target>:
@@ -24,8 +22,8 @@ flick <user.rango_target>:
   key(enter)
 
 # Focus tab
-tabs <user.rango_target>:
-  user.rango_command_with_target("activateTab", rango_target)
+tabs <user.rango_tab_marker>:
+  user.rango_command_with_target("activateTab", rango_tab_marker)
 tabs marker (reload | refresh): user.rango_command_without_target("refreshTabMarkers")
 
 # Open in a new tab
@@ -45,6 +43,14 @@ tabs split: user.rango_command_without_target("moveCurrentTabToNewWindow")
 
 # Focus previous tab
 tabs back: user.rango_command_without_target("focusPreviousTab")
+
+# Focus or create tab from your `talonhub/community` websites.csv
+visit {user.website}: user.rango_command_without_target("focusOrCreateTabByUrl", website)
+
+# Focus tab by text
+tab hunt <user.text>: user.rango_command_without_target("focusTabByText", text)
+tab ahead: user.rango_command_without_target("cycleTabsByText", 1)
+tab behind: user.rango_command_without_target("cycleTabsByText", -1)
 
 # Close tabs
 tabs close others: user.rango_command_without_target("closeOtherTabsInWindow")
@@ -144,6 +150,12 @@ bottom <user.rango_target>:
 center <user.rango_target>:
   user.rango_command_with_target("scrollElementToCenter", rango_target)
 
+# Custom scroll positions
+scroll save <user.word>:
+  user.rango_command_without_target("storeScrollPosition", word)
+scroll to <user.word>:
+  user.rango_command_without_target("scrollToPosition", word)
+
 # Copy target information
 copy [link] <user.rango_target>:
   user.rango_command_with_target("copyLink", rango_target)
@@ -192,6 +204,7 @@ hint more: user.rango_command_without_target("displayExcludedHints")
 hint less: user.rango_command_without_target("displayLessHints")
 include <user.rango_target>: user.rango_command_with_target("includeExtraSelectors", rango_target)
 exclude <user.rango_target>: user.rango_command_with_target("excludeExtraSelectors", rango_target)
+exclude all: user.rango_command_without_target("excludeAllHints")
 some more: user.rango_command_without_target("includeOrExcludeMoreSelectors")
 some less: user.rango_command_without_target("includeOrExcludeLessSelectors")
 custom hints save: user.rango_command_without_target("confirmSelectorsCustomization")
@@ -209,6 +222,9 @@ hints reset {user.rango_hints_toggle_levels}:
 toggle show:
   user.rango_command_without_target("displayTogglesStatus")
 
+# Toggle tab markers
+markers (toggle | switch): user.rango_command_without_target("toggleTabMarkers")
+
 # Toggle keyboard clicking
 keyboard (toggle | switch): user.rango_command_without_target("toggleKeyboardClicking")
 
@@ -216,12 +232,18 @@ keyboard (toggle | switch): user.rango_command_without_target("toggleKeyboardCli
 address in title on: user.rango_command_without_target("enableUrlInTitle")
 address in title off: user.rango_command_without_target("disableUrlInTitle")
 
-# Switch modes
-rango explicit:  user.rango_disable_direct_clicking()
-rango direct:  user.rango_enable_direct_clicking()
-
 # Setting page
 rango settings: user.rango_command_without_target("openSettingsPage")
 
 # Pages
 rango open {user.rango_page}: user.rango_command_without_target("openPageInNewTab", rango_page)
+
+#  Hint/element references for scripting
+mark <user.rango_target> as <user.word>: user.rango_command_with_target("saveReference", rango_target, word)
+mark show: user.rango_command_without_target("showReferences")
+mark clear <user.word>: user.rango_command_without_target("removeReference", word)
+
+# Run actions on saved references
+click mark <user.word>: user.rango_run_action_on_reference("clickElement", word)
+focus mark <user.word>: user.rango_run_action_on_reference("focusElement", word)
+hover mark <user.word>: user.rango_run_action_on_reference("hoverElement", word)
