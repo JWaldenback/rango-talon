@@ -3,6 +3,7 @@ tag: browser
 settings():
 #There are two modes: direct and explicit clicking. Explicit clicking is the default mode, to switch between the modes comment/uncomment the tag `user.rango_direct_clicking`. With explicit clicking you have to precede every hint with the word `click`. This mode prevents any misclicks at the expense of being a bit more tedious.
 tag(): user.rango_direct_clicking
+#tag(): user.rango_exclude_singles
 #tag(): user.rango_number_hints
 
 # Click
