@@ -24,9 +24,9 @@ flick <user.rango_target>:
   key(enter)
 
 # Focus tab
-(go tab | slot) <user.rango_target>:
+tabs <user.rango_target>:
   user.rango_command_with_target("activateTab", rango_target)
-tab marker refresh: user.rango_command_without_target("refreshTabMarkers")
+tabs marker (reload | refresh): user.rango_command_without_target("refreshTabMarkers")
 
 # Open in a new tab
 blank <user.rango_target>:
@@ -36,14 +36,15 @@ stash <user.rango_target>:
 
 # Navigation
 go root: user.rango_command_without_target("navigateToPageRoot")
-page next: user.rango_command_without_target("navigateToNextPage")
-page last: user.rango_command_without_target("navigateToPreviousPage")
+# Used for paginated pages
+page (next | forth): user.rango_command_without_target("navigateToNextPage")
+page (last | back | previous): user.rango_command_without_target("navigateToPreviousPage")
 
 # Move current tab to a new window
-tab split: user.rango_command_without_target("moveCurrentTabToNewWindow")
+tabs split: user.rango_command_without_target("moveCurrentTabToNewWindow")
 
 # Focus previous tab
-tab back: user.rango_command_without_target("focusPreviousTab")
+tabs back: user.rango_command_without_target("focusPreviousTab")
 
 # Close tabs
 tabs close others: user.rango_command_without_target("closeOtherTabsInWindow")
@@ -59,7 +60,7 @@ tabs close right [<number_small>]:
   user.rango_command_without_target("closeNextTabsInWindow", number_small or 1)
 
 # Clone tab
-tab clone: user.rango_command_without_target("cloneCurrentTab")
+tabs clone: user.rango_command_without_target("cloneCurrentTab")
 
 # Hover
 hover <user.rango_target>:
