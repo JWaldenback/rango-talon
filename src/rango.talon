@@ -213,7 +213,7 @@ custom hints reset: user.rango_command_without_target("resetCustomSelectors")
 
 # Show and hide hints
 hints refresh: user.rango_command_without_target("refreshHints")
-hints (toggle | switch): user.rango_command_without_target("toggleHints")
+hints toggle: user.rango_command_without_target("toggleHints")
 (rango on | hints on) [{user.rango_hints_toggle_levels}]: 
   user.rango_command_without_target("enableHints", rango_hints_toggle_levels or "global")
 (rango off | hints off) [{user.rango_hints_toggle_levels}]: 
