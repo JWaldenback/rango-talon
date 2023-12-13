@@ -49,9 +49,9 @@ tabs back: user.rango_command_without_target("focusPreviousTab")
 visit {user.website}: user.rango_command_without_target("focusOrCreateTabByUrl", website)
 
 # Focus tab by text
-tab hunt <user.text>: user.rango_command_without_target("focusTabByText", text)
-tab ahead: user.rango_command_without_target("cycleTabsByText", 1)
-tab behind: user.rango_command_without_target("cycleTabsByText", -1)
+tabs hunt <user.text>: user.rango_command_without_target("focusTabByText", text)
+tabs ahead: user.rango_command_without_target("cycleTabsByText", 1)
+tabs behind: user.rango_command_without_target("cycleTabsByText", -1)
 
 # Close tabs
 tabs close others: user.rango_command_without_target("closeOtherTabsInWindow")
