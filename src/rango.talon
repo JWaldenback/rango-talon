@@ -201,13 +201,13 @@ custom hints save: user.rango_confirm_selectors_customization()
 custom hints reset: user.rango_reset_custom_selectors()
 
 # Show and hide hints
-hints refresh: user.rango_refresh_hints()
-hints (toggle | switch): user.rango_toggle_hints()
-hints on [{user.rango_hints_toggle_levels}]:
+(rango | hints) refresh: user.rango_refresh_hints()
+(rango | hints) (toggle | switch): user.rango_toggle_hints()
+(rango | hints) on [{user.rango_hints_toggle_levels}]:
   user.rango_enable_hints(rango_hints_toggle_levels or "global")
-hints off [{user.rango_hints_toggle_levels}]:
+(rango | hints) off [{user.rango_hints_toggle_levels}]:
   user.rango_disable_hints(rango_hints_toggle_levels or "global")
-hints reset {user.rango_hints_toggle_levels}:
+(rango | hints) reset {user.rango_hints_toggle_levels}:
   user.rango_reset_toggle_level(rango_hints_toggle_levels)
 toggle show: user.rango_display_toggles_status()
 labels: user.rango_enable_hints("now")
