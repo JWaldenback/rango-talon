@@ -49,7 +49,7 @@ unpin tab <user.rango_tab_target>: user.rango_unpin_tab(rango_tab_target)
 tab close <user.rango_tab_target>: user.rango_close_tab(rango_tab_target)
 
 # Open in a new tab
-blank <user.rango_target>: user.rango_open_in_new_tab(rango_target)
+# blank <user.rango_target>: user.rango_open_in_new_tab(rango_target)
 stash <user.rango_target>: user.rango_open_in_background_tab(rango_target)
 
 # Navigation
